@@ -1,6 +1,6 @@
 body {
 	background-image: url('https://wallpaperaccess.com/full/1474185.jpg');
-	font-family: Arial, sans-serif; /* Added font */
+	font-family: Arial, sans-serif;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -9,7 +9,7 @@ body {
 }
 
 #weather-container {
-	background: rgba(255, 255, 255, 0.1); /* Added missing background */
+	background: rgba(255, 255, 255, 0.1);
 	max-width: 400px;
 	padding: 20px;
 	border-radius: 15px;
@@ -19,30 +19,31 @@ body {
 	text-align: center;
 }
 
-h2, label, p {
+h2, label, p, #hourly-heading {
 	color: #fff;
 	margin: 8px 0;
 }
 
-input {
+input, select, button {
 	width: calc(100% - 16px);
 	padding: 8px;
 	box-sizing: border-box;
 	border-radius: 10px;
 	border: 1px solid white;
 	margin-top: 20px;
+	font-size: 15px;
+}
+
+input, select {
+	background: rgba(255, 255, 255, 0.2);
+	color: white;
 }
 
 button {
 	background: #2980b9;
 	color: white;
-	padding: 10px;
-	border: none;
-	border-radius: 10px;
 	cursor: pointer;
-	margin-top: 20px;
 	width: 100px;
-	font-size: 15px;
 }
 
 button:hover {
@@ -62,7 +63,6 @@ button:hover {
 	width: 200px;
 	height: 200px;
 	margin: 0 auto 10px;
-	margin-bottom: 0;
 	display: none;
 }
 
@@ -74,6 +74,7 @@ button:hover {
 	justify-content: space-between;
 }
 
+/* Hourly item styling */
 .hourly-item {
 	flex: 0 0 auto;
 	width: 80px;
@@ -90,11 +91,7 @@ button:hover {
 	margin-bottom: 5px;
 }
 
-#hourly-heading {
-	color: #fff;
-	margin-top: 10px;
-}
-/* Custom Scrollbar for #hourly-forecast (Webkit Browsers) */
+/* Scrollbar */
 #hourly-forecast::-webkit-scrollbar {
 	height: 10px;
 }
@@ -107,7 +104,7 @@ button:hover {
 #hourly-forecast::-webkit-scrollbar-thumb {
 	background-color: #2980b9;
 	border-radius: 10px;
-	border: 2px solid #ffffff55; /* Adds a subtle border effect */
+	border: 2px solid #ffffff55;
 }
 
 #hourly-forecast::-webkit-scrollbar-thumb:hover {
