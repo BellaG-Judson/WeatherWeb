@@ -67,6 +67,9 @@ function displayWeather(data) {
         weatherIcon.src = iconUrl;
         weatherIcon.alt = description;
         weatherIcon.style.display = 'block';
+
+        const timezoneOffsetSeconds = data.timezone;
+        setBackgroundBasedOnCityTime (timezoneOffsetSeconds);
     }
 }
 
@@ -120,7 +123,7 @@ function setBackgroundBasedOnCityTime(timezoneOffsetInSeconds) {
 
 function setDefaultBackground() {
     const body = document.body;
-    body.style.backgroundImage = "url('https://images.unsplash.com/photo-1606788075760-8e3b8bdbb907?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80')"; // <-- Your homepage image
+    body.style.backgroundImage = "url('https://wallpaperaccess.com/full/1474185.jpg')";
     body.style.backgroundSize = "cover";
     body.style.backgroundPosition = "center";
 }
