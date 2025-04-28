@@ -1,6 +1,7 @@
 function getWeather() {
 	const apiKey = '1feb9609b269faa1481e86fabd9f42a5';
 	const city = document.getElementById('city').value;
+	const unit = document.getElementById('unit').value;
 
 	if (!city) {
 		alert('Please enter a city');
@@ -14,7 +15,7 @@ function getWeather() {
 	fetch(currentWeatherUrl)
 		.then(response => response.json())
 		.then(data => {
-			displayWeather(data);
+			displayWeather(data,unit);
 		})
 		.catch(error => {
 			console.error('Error fetching current weather data:', error);
@@ -24,7 +25,7 @@ function getWeather() {
 	fetch(forecastUrl)
 		.then(response => response.json())
 		.then(data => {
-			displayHourlyForecast(data.list);
+			displayHourlyForecast(data.list,unit);
 		})
 		.catch(error => {
 			console.error('Error fetching hourly forecast data:', error);
@@ -32,7 +33,7 @@ function getWeather() {
 		});
 }
 
-function displayWeather(data) {
+function displayWeather(data,unit) {
 	const tempDivInfo = document.getElementById('temp-div');
 	const weatherInfoDiv = document.getElementById('weather-info');
 	const weatherIcon = document.getElementById('weather-icon');
@@ -50,11 +51,13 @@ function displayWeather(data) {
 		const description = data.weather[0].description;
 		const iconCode = data.weather[0].icon;
 		const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+		
+		const unitSymbol = unit === 'metric' ? 'C' : 'F';
 
 		const temperatureHTML = `
 			<p>${cityName}</p>
 			<p>${description}</p>
-			<p>${temperature}&deg;C</p>
+			<p>${temperature}&deg;${unitSymbol}</p>
 		`;
 
 		tempDivInfo.innerHTML = temperatureHTML;
@@ -64,11 +67,13 @@ function displayWeather(data) {
 	}
 }
 
-function displayHourlyForecast(hourlyData) {
+function displayHourlyForecast(hourlyData,unit) {
 	const hourlyForecastDiv = document.getElementById('hourly-forecast');
 	const next24Hours = hourlyData.slice(0, 8);
 
 	hourlyForecastDiv.innerHTML = '';
+
+	const unitSymbol = unit === 'celcius' ? 'C' : 'F';
 
 	next24Hours.forEach(item => {
 		const dateTime = new Date(item.dt * 1000);
